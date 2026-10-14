@@ -7,24 +7,23 @@
 <meta name="description" content="Vijaysshree Technologies India Limited, Jodhpur. Contact and product catalogues.">
 <meta property="og:title" content="Vijay Sshree">
 <meta property="og:description" content="Contact and product catalogues.">
-<meta name="theme-color" content="#060B2A">
+<meta name="theme-color" content="#FFF6EC">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --void: #060B2A;
-    --card-top: #131E5C;
-    --card-mid: #0C1446;
-    --card-end: #091037;
-    --white: #FFFFFF;
-    --text: #E9ECF8;
-    --muted: #9AA3C7;
-    --line: rgba(255, 255, 255, .09);
-    --line-gold: rgba(226, 191, 140, .32);
-    --gold: #E2BF8C;
-    --gold-soft: #C9A574;
+    --void: #FFF6EC;
+    --card: #FFFFFF;
+    --ink: #1F1A17;
+    --text: #3A332E;
+    --muted: #7A6F66;
+    --line: rgba(31, 26, 23, .08);
+    --line-gold: rgba(242, 142, 0, .3);
+    --gold: #F28E00;
+    --gold-soft: #C24E00;
+    --tint: rgba(242, 142, 0, .06);
     --saffron: #F28E00;
     --vermilion: #E32B13;
     --serif: "Cormorant Garamond", Georgia, serif;
@@ -32,12 +31,13 @@
     --ease: cubic-bezier(.16, .84, .3, 1);
   }
 
+  :root { color-scheme: light; }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
     min-height: 100vh;
-    background: radial-gradient(70% 45% at 50% 25%, #142067 0%, transparent 70%), var(--void);
+    background: radial-gradient(70% 45% at 50% 25%, #FFE2BF 0%, transparent 70%), var(--void);
     background-attachment: fixed;
     color: var(--text);
     font: 500 15px/1.5 var(--sans);
@@ -55,7 +55,7 @@
   /* Engraved sun behind the card */
   .backdrop { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
   .backdrop svg { position: absolute; left: 50%; top: 40%; width: 1500px; height: 1500px; margin: -750px 0 0 -750px; animation: spin 400s linear infinite; }
-  .backdrop line, .backdrop circle { stroke: rgba(226, 191, 140, .06); stroke-width: 1; fill: none; }
+  .backdrop line, .backdrop circle { stroke: rgba(242, 142, 0, .1); stroke-width: 1; fill: none; }
   #dust { position: absolute; inset: 0; width: 100%; height: 100%; }
 
   /* ---------- The card is the page ---------- */
@@ -67,9 +67,9 @@
     border-radius: 30px;
     border: 1px solid var(--line-gold);
     background:
-      radial-gradient(120% 34% at 50% 0%, rgba(70, 98, 200, .35), transparent 70%),
-      linear-gradient(180deg, var(--card-top) 0%, var(--card-mid) 28%, var(--card-end) 100%);
-    box-shadow: 0 50px 100px -30px rgba(0, 0, 0, .9), inset 0 1px 0 rgba(255, 255, 255, .1);
+      radial-gradient(120% 34% at 50% 0%, rgba(242, 142, 0, .13), transparent 70%),
+      var(--card);
+    box-shadow: 0 40px 80px -36px rgba(150, 70, 0, .35), 0 2px 6px rgba(150, 70, 0, .06);
     animation: card-in .9s var(--ease) both;
   }
   .card-clip { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none; }
@@ -79,11 +79,12 @@
   .corner.tr { top: 14px; right: 14px; transform: scaleX(-1); }
   .corner.bl { bottom: 14px; left: 14px; transform: scaleY(-1); }
   .corner.br { bottom: 14px; right: 14px; transform: scale(-1, -1); }
+  /* Wide strip moved with transform so the sweep never repaints the card */
   .glare {
-    position: absolute; inset: 0;
-    background: linear-gradient(112deg, transparent 42%, rgba(255, 236, 210, .06) 48%, rgba(255, 236, 210, .09) 50%, rgba(255, 236, 210, .06) 52%, transparent 58%);
-    background-size: 320% 100%;
-    background-position: calc(var(--sx, 1.2) * 100%) 0;
+    position: absolute; top: 0; bottom: 0; left: 0; width: 320%;
+    background: linear-gradient(112deg, transparent 42%, rgba(242, 142, 0, .04) 48%, rgba(242, 142, 0, .07) 50%, rgba(242, 142, 0, .04) 52%, transparent 58%);
+    transform: translate3d(-82.5%, 0, 0);
+    will-change: transform;
   }
 
   /* ---------- Header ---------- */
@@ -96,8 +97,8 @@
   .m-glow { opacity: 0; animation: show 2s var(--ease) .7s forwards; }
   .m-rise { transform: translateY(46px); animation: rise 2s var(--ease) .6s forwards; }
   .m-rays { transform-origin: 100px 132px; animation: spin 90s linear infinite; }
-  .m-rays line { stroke: rgba(255, 205, 130, .2); stroke-width: .7; }
-  .m-fort { fill: #070D33; }
+  .m-rays line { stroke: rgba(255, 255, 255, .3); stroke-width: .7; }
+  .m-fort { fill: #7A2A0C; }
 
   .logo { width: 228px; margin: 24px auto 0; display: block; clip-path: inset(0 100% 0 0 round 20px); animation: wipe .8s var(--ease) .9s forwards; }
   .lockup { margin: 11px 0 0; font: 600 10.5px/1 var(--sans); letter-spacing: .4em; color: var(--muted); padding-left: .4em; animation: fade .7s ease 1.1s both; }
@@ -106,7 +107,7 @@
 
   /* ---------- Body ---------- */
   .body { position: relative; z-index: 2; padding: 28px 18px 0; animation: lift .8s var(--ease) 1.3s both; }
-  .panel { border: 1px solid var(--line); border-radius: 22px; background: rgba(255, 255, 255, .025); }
+  .panel { border: 1px solid var(--line); border-radius: 22px; background: #fff; }
 
   .rows .row {
     display: flex; align-items: center; gap: 14px;
@@ -114,25 +115,27 @@
     min-height: 68px;
     transition: background .2s;
   }
-  .rows .row + .row { border-top: 1px solid var(--line); }
-  .rows .row:first-child { border-radius: 22px 22px 0 0; }
+  /* Call and WhatsApp stay hidden until numbers are set, so count only visible rows */
+  .rows .row:not([hidden]) ~ .row { border-top: 1px solid var(--line); }
+  .rows .row:nth-child(1 of :not([hidden])) { border-radius: 22px 22px 0 0; }
   .rows .row:last-child { border-radius: 0 0 22px 22px; }
-  .rows .row:hover, .rows .row:active { background: rgba(255, 255, 255, .035); }
+  .rows .row:hover, .rows .row:active { background: var(--tint); }
   .rows .row[hidden] { display: none; }
   .row-text { flex: 1; min-width: 0; }
   .row-label { display: block; font-size: 12px; font-weight: 600; letter-spacing: .04em; color: var(--gold-soft); }
-  .row-value { display: block; margin-top: 2px; font-size: clamp(14px, 4.1vw, 15.5px); font-weight: 600; line-height: 1.35; color: var(--white); letter-spacing: -.005em; }
+  .row-value { display: block; margin-top: 2px; font-size: clamp(14px, 4.1vw, 15.5px); font-weight: 600; line-height: 1.35; color: var(--ink); letter-spacing: -.005em; }
   .row-icon {
     flex: none; width: 42px; height: 42px; border-radius: 50%;
     display: grid; place-items: center;
     border: 1px solid var(--line-gold);
+    background: var(--tint);
     color: var(--gold);
   }
   .row-icon svg { width: 18px; height: 18px; }
-  .row.wa .row-icon { border-color: rgba(37, 211, 102, .45); color: #4ADE80; }
+  .row.wa .row-icon { border-color: rgba(22, 163, 74, .4); background: rgba(22, 163, 74, .07); color: #16A34A; }
 
   .sec { margin-top: 32px; }
-  .sec h2 { margin: 0 4px; font: 600 25px/1.1 var(--serif); color: var(--white); letter-spacing: .005em; }
+  .sec h2 { margin: 0 4px; font: 700 25px/1.1 var(--serif); color: var(--ink); letter-spacing: .005em; }
 
   /* Catalogue carousel */
   .carousel {
@@ -150,26 +153,28 @@
     margin: 0 -10px;
     scroll-snap-align: center;
     will-change: transform;
+    backface-visibility: hidden;
   }
   .slide-frame {
     position: relative; display: block;
     aspect-ratio: 3 / 4;
     border-radius: 6px 12px 12px 6px;
     overflow: hidden;
-    background: #0A1037;
-    box-shadow: 0 24px 36px -16px rgba(0, 0, 0, .85), 0 0 0 1px rgba(255, 255, 255, .1);
+    background: #F6EEE6;
+    box-shadow: 0 22px 32px -18px rgba(120, 50, 0, .55), 0 0 0 1px rgba(31, 26, 23, .08);
   }
   .slide-frame img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; user-select: none; -webkit-user-drag: none; }
   .slide-frame::after {
     content: ""; position: absolute; inset: 0; pointer-events: none;
     background: linear-gradient(90deg, rgba(0, 0, 0, .3) 0, rgba(255, 255, 255, .2) 2.5%, transparent 7%);
   }
+  /* Dims side covers via opacity, which the GPU handles without repainting the image */
+  .slide-shade { position: absolute; inset: 0; background: #1F1A17; opacity: 0; pointer-events: none; will-change: opacity; }
   .caption { text-align: center; min-height: 52px; }
   .caption small { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .14em; color: var(--gold-soft); }
-  .caption b { display: block; margin-top: 3px; font: 600 23px/1.15 var(--serif); color: var(--white); }
-  .caption.swap { animation: cap .45s var(--ease); }
+  .caption b { display: block; margin-top: 3px; font: 700 23px/1.15 var(--serif); color: var(--ink); }
   .dots { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
-  .dots button { width: 6px; height: 6px; padding: 0; border: 0; border-radius: 999px; background: rgba(255, 255, 255, .22); cursor: pointer; transition: width .35s var(--ease), background .35s; }
+  .dots button { width: 6px; height: 6px; padding: 0; border: 0; border-radius: 999px; background: rgba(31, 26, 23, .16); cursor: pointer; transition: width .35s var(--ease), background .35s; }
   .dots button[aria-current="true"] { width: 22px; background: var(--gold); }
 
   /* Review */
@@ -179,27 +184,27 @@
     padding: 18px 16px 18px 20px;
     border-radius: 22px;
     border: 1px solid var(--line-gold);
-    background: linear-gradient(115deg, rgba(226, 191, 140, .13), rgba(226, 191, 140, .02) 65%);
+    background: linear-gradient(115deg, rgba(242, 142, 0, .14), rgba(242, 142, 0, .02) 65%);
   }
   .review-text { flex: 1; min-width: 0; }
-  .review strong { display: block; font: 600 clamp(19px, 5.6vw, 23px)/1.15 var(--serif); color: var(--white); white-space: nowrap; }
+  .review strong { display: block; font: 700 clamp(19px, 5.6vw, 23px)/1.15 var(--serif); color: var(--ink); white-space: nowrap; }
   .stars { display: flex; gap: 4px; margin-top: 7px; }
   .stars svg { width: 14px; height: 14px; fill: var(--saffron); }
-  .go { flex: none; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: var(--gold); color: #0A1037; }
+  .go { flex: none; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, var(--vermilion), var(--saffron)); color: #fff; box-shadow: 0 8px 18px -8px rgba(227, 43, 19, .6); }
   .go svg { width: 19px; height: 19px; }
 
   .socials { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 10px; }
-  .social { display: flex; align-items: center; justify-content: center; gap: 10px; min-width: 0; padding: 11px 10px; border-radius: 20px; border: 1px solid var(--line); background: rgba(255, 255, 255, .025); font-size: 14.5px; font-weight: 600; color: var(--white); }
+  .social { display: flex; align-items: center; justify-content: center; gap: 10px; min-width: 0; padding: 11px 10px; border-radius: 20px; border: 1px solid var(--line); background: #fff; font-size: 14.5px; font-weight: 600; color: var(--ink); }
   .social .row-icon { width: 36px; height: 36px; }
 
   /* Facts */
   .facts { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 32px; }
   .facts div { padding: 16px 6px 14px; text-align: center; }
   .facts div + div { border-left: 1px solid var(--line); }
-  .facts b { display: block; font: 700 26px/1 var(--serif); color: var(--gold); font-variant-numeric: lining-nums; }
+  .facts b { display: block; font: 700 26px/1 var(--serif); color: var(--gold-soft); font-variant-numeric: lining-nums; }
   .facts span { display: block; margin-top: 6px; font-size: 12px; font-weight: 600; color: var(--muted); }
 
-  .foot { margin-top: 22px; text-align: center; font-size: 11.5px; font-weight: 500; color: rgba(154, 163, 199, .7); }
+  .foot { margin-top: 22px; text-align: center; font-size: 11.5px; font-weight: 500; color: var(--muted); }
 
   /* Dock */
   .dock {
@@ -208,7 +213,7 @@
     margin-top: 14px;
     padding: 22px 18px calc(18px + env(safe-area-inset-bottom));
     border-radius: 0 0 30px 30px;
-    background: linear-gradient(to top, var(--card-end) calc(100% - 18px), rgba(9, 16, 55, 0));
+    background: linear-gradient(to top, var(--card) calc(100% - 18px), rgba(255, 255, 255, 0));
     animation: fade .7s ease 1.5s both;
   }
   .save {
@@ -232,7 +237,7 @@
   .share {
     flex: none; width: 56px; height: 56px; border-radius: 50%;
     display: grid; place-items: center;
-    border: 1px solid var(--line-gold); background: rgba(6, 11, 42, .7);
+    border: 1px solid var(--line-gold); background: #fff;
     cursor: pointer;
   }
   .share svg { width: 20px; height: 20px; color: var(--gold); }
@@ -241,7 +246,7 @@
     position: fixed; left: 50%; bottom: calc(100px + env(safe-area-inset-bottom)); z-index: 20;
     transform: translate(-50%, 16px);
     padding: 10px 18px; border-radius: 999px;
-    background: #fff; color: #0A1037; font-weight: 700; font-size: 14px;
+    background: var(--ink); color: #fff; font-weight: 700; font-size: 14px;
     opacity: 0; pointer-events: none; transition: opacity .25s, transform .35s var(--ease);
   }
   .toast.is-on { opacity: 1; transform: translate(-50%, 0); }
@@ -254,7 +259,6 @@
     .logo { width: 210px; }
     .rows .row { padding-left: 16px; padding-right: 12px; gap: 10px; }
   }
-  @keyframes cap { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
   @media (min-width: 520px) {
     .card { margin-top: 36px; margin-bottom: 36px; }
@@ -282,7 +286,6 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <linearGradient id="vsGrad" x1="0" x2="1"><stop offset=".3" stop-color="#E32B13"/><stop offset="1" stop-color="#F28E00"/></linearGradient>
-    <radialGradient id="sunFill" cx=".5" cy=".5" r=".55"><stop offset="0" stop-color="#FFE1A0"/><stop offset=".5" stop-color="#F8A41E"/><stop offset="1" stop-color="#E9461A"/></radialGradient>
     <path id="vsPill" d="M37.3 0H420.4V37.3A37.3 37.3 0 0 1 383.1 74.6H0V37.3A37.3 37.3 0 0 1 37.3 0Z"/>
     <path id="vsWord" d="M90.35 19.5L79.75 53.28L68.2 53.28L58.86 19.5L69.36 19.5L74.21 40.74L79.75 19.5L90.35 19.5M211.51 45.06L213.11 53.25L226.85 53.25C228.75 53.25 230.57 52.52 232.32 51.06C234.07 49.61 234.94 47.85 234.94 45.79C234.94 44.75 234.75 43.76 234.35 42.83C233.95 41.89 233.27 40.89 232.3 39.82L224.21 30.95C223.03 29.67 222.45 28.71 222.45 28.08C222.45 27.27 223.42 26.86 225.35 26.86L234.2 26.86L231.3 19.47L220.76 19.47C217.52 19.47 215.14 20.12 213.6 21.41C212.07 22.71 211.31 24.4 211.31 26.46C211.31 27.78 211.6 29.1 212.19 30.43C212.76 31.76 213.58 32.98 214.61 34.07L221.11 41.07C221.67 41.69 222.21 42.3 222.73 42.88C223.24 43.46 223.5 43.9 223.5 44.22C223.5 44.78 222.67 45.06 221 45.06L211.51 45.06M95.33 17.82h10.29v35.46h-10.29ZM127.63 49.51C127.63 52.96 126.23 56.06 123.43 58.81C120.64 61.56 117.35 62.95 113.59 62.95L109.85 55.61C112.02 55.21 113.84 54.22 115.33 52.65C116.81 51.08 117.56 49.38 117.56 47.53L117.56 46.97L117.56 27.09L111 27.09L112.99 19.45L127.63 19.45L127.63 49.51M163.22 27.24L150.72 27.24C148.65 27.75 146.98 28.65 145.71 29.94C144.45 31.24 143.7 32.85 143.46 34.78L152.8 34.78L152.8 28.37L162.46 28.37L162.46 53.19L152.59 53.19L152.49 42.08L143.08 42.08C142.99 42.8 142.93 43.49 142.93 44.15C142.93 47.08 143.7 50.05 145.24 53.05L137.63 57.36C135.9 55.01 134.77 52.44 134.23 49.65C133.7 46.87 133.44 43.66 133.44 40.03L133.44 37.54C133.44 32.62 135.39 28.43 139.3 24.96C143.21 21.48 148.08 19.74 153.9 19.74L160.27 19.74L163.22 27.24M199.56 17.77L187.21 39.15L187.21 53.81L177.77 58.51C177.21 57.82 176.82 56.98 176.62 55.99C176.42 55 176.27 54.28 176.17 53.81L176.17 37.64L166.02 17.77L178.72 17.77L182.62 26.65L187.82 17.77L199.56 17.77M240.33 45.09L241.93 53.28L255.67 53.28C257.57 53.28 259.39 52.55 261.14 51.09C262.89 49.64 263.76 47.88 263.76 45.82C263.76 44.78 263.57 43.79 263.17 42.86C262.77 41.92 262.09 40.92 261.12 39.85L253.03 30.98C251.85 29.7 251.28 28.74 251.28 28.11C251.28 27.3 252.24 26.89 254.17 26.89L263.02 26.89L260.12 19.5L249.58 19.5C246.34 19.5 243.96 20.15 242.43 21.44C240.89 22.74 240.13 24.43 240.13 26.49C240.13 27.81 240.42 29.13 241.01 30.46C241.58 31.79 242.4 33.01 243.43 34.1L249.93 41.1C250.49 41.72 251.03 42.33 251.55 42.91C252.06 43.49 252.33 43.93 252.33 44.25C252.33 44.81 251.5 45.09 249.82 45.09L240.33 45.09M298.92 53.14L288.52 53.14L288.42 37.74L278.66 37.74L278.66 53.15L269.16 58.65L269.16 19.5L278.82 19.5L278.82 29.11L288.89 29.11L288.89 19.5L298.92 19.5L298.92 53.14M305.74 27.78h9.13v25.26h-9.13ZM303.58 26.89L317.91 26.89C320.84 26.89 322.8 26.97 323.8 27.11C324.8 27.25 325.21 27.69 325.05 28.45C324.64 30.04 323.4 31.64 321.3 33.23C319.21 34.83 317.34 36.22 315.71 37.42C316.57 39.32 317.63 41.48 318.88 43.89C320.13 46.3 321.6 48.8 323.28 51.38C324.96 53.96 326.8 56.35 328.81 58.55L336.85 53.14C334.55 50.42 332.71 48.05 331.31 46.05C329.91 44.04 328.45 41.69 326.91 38.99C329.65 37.55 331.83 35.71 333.48 33.48C335.13 31.23 335.95 29.05 335.95 26.92C335.95 24.72 335.02 22.94 333.15 21.57C331.29 20.19 328.46 19.5 324.66 19.5L305.98 19.5L303.58 26.89M341.44 53.28L364.22 53.28L366.26 45.34L350.93 45.34L350.93 39.72L361.77 39.72L363.87 31.97L350.93 31.97L350.93 27.19L365.71 27.19L363.17 19.55L341.44 19.55L341.44 53.28M371.85 53.28L394.63 53.28L396.68 45.34L381.35 45.34L381.35 39.72L392.19 39.72L394.29 31.97L381.35 31.97L381.35 27.19L396.13 27.19L393.59 19.55L371.85 19.55L371.85 53.28"/>
     <path id="vsSun" d="M32.13 25.42C22.47 25.42 17.32 37.11 24.32 44.13C26.37 46.18 29.01 47.36 32.13 47.36C35.24 47.36 37.88 46.18 39.93 44.13C46.93 37.11 41.78 25.42 32.13 25.42M32.13 54.42C31.78 54.17 31.61 53.6 31.39 53.17L29.96 50.41C29.77 50.05 29.34 49.31 29.26 49.01C28.83 49.13 28.5 49.51 28 49.85L24.19 52.65C24.19 50.53 24.08 48.67 24.08 46.48C23.2 46.55 18.8 47.62 17.9 47.69L20.44 41.96C19.99 41.92 19.44 41.73 19.02 41.61C18.31 41.42 15 40.53 14.48 40.52C14.59 40.12 14.67 40.16 14.99 39.92L16.78 38.41C17.19 38.08 17.58 37.76 17.98 37.41C18.4 37.04 18.81 36.78 19.11 36.33L15.62 33.43C15.49 33.32 15.46 33.28 15.33 33.17C15.31 33.15 15.24 33.09 15.21 33.07C14.92 32.81 14.71 32.69 14.48 32.36L20.44 30.82C20.34 30.4 20.04 29.91 19.84 29.43L18.53 26.55C18.34 26.1 17.99 25.48 17.9 25.08L22.49 26.01C22.98 26.11 23.55 26.29 24.08 26.3L24.19 20.12C24.87 20.49 26.49 21.87 27.36 22.46L29.26 23.87C29.32 23.62 31.77 18.62 32.13 18.36C32.49 18.62 34.93 23.62 34.99 23.87L36.89 22.46C37.76 21.87 39.38 20.49 40.07 20.12L40.18 26.3C40.7 26.29 41.27 26.11 41.77 26.01L46.35 25.08C46.26 25.48 45.92 26.1 45.72 26.55L44.41 29.43C44.21 29.91 43.91 30.4 43.81 30.82L49.77 32.36C49.55 32.69 49.34 32.81 49.04 33.07C49.01 33.09 48.94 33.15 48.92 33.17C48.79 33.28 48.76 33.32 48.63 33.43L45.14 36.33C45.44 36.78 45.85 37.04 46.27 37.41C46.67 37.76 47.06 38.08 47.47 38.41L49.27 39.92C49.59 40.16 49.66 40.12 49.77 40.52C49.25 40.53 45.94 41.42 45.23 41.61C44.82 41.73 44.26 41.92 43.81 41.96L46.35 47.69C45.46 47.62 41.05 46.55 40.18 46.48C40.18 48.67 40.07 50.53 40.07 52.65L36.25 49.85C35.75 49.51 35.42 49.13 34.99 49.01C34.91 49.31 34.48 50.05 34.3 50.41L32.86 53.17C32.64 53.6 32.47 54.17 32.13 54.42M32.13 45.26C35.76 45.26 38.7 43.26 40.21 40.12C42.41 35.55 40.07 30.1 35.69 28.25C34.47 27.74 34.05 27.73 32.91 27.6C32.61 27.56 32.13 27.33 32.13 27.84C32.13 27.33 31.64 27.56 31.34 27.6C30.2 27.73 29.78 27.74 28.56 28.25C24.18 30.1 21.84 35.55 24.04 40.12C25.55 43.26 28.49 45.26 32.13 45.26L32.13 45.26"/>
@@ -310,8 +313,8 @@
     <svg class="medal" viewBox="0 0 200 200" aria-hidden="true">
       <defs>
         <clipPath id="mClip"><circle cx="100" cy="100" r="79"/></clipPath>
-        <linearGradient id="mSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0A1244"/><stop offset=".5" stop-color="#1B2C85"/><stop offset=".78" stop-color="#4A4FA0"/><stop offset="1" stop-color="#F08A2A"/></linearGradient>
-        <radialGradient id="mGlow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFC56B" stop-opacity=".9"/><stop offset=".45" stop-color="#F28E00" stop-opacity=".45"/><stop offset="1" stop-color="#E32B13" stop-opacity="0"/></radialGradient>
+        <linearGradient id="mSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE7C7"/><stop offset=".5" stop-color="#FFC27A"/><stop offset=".78" stop-color="#F7922B"/><stop offset="1" stop-color="#E9551A"/></linearGradient>
+        <radialGradient id="mGlow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6E0" stop-opacity=".95"/><stop offset=".45" stop-color="#FFD08A" stop-opacity=".5"/><stop offset="1" stop-color="#F28E00" stop-opacity="0"/></radialGradient>
       </defs>
       <circle class="m-dots" cx="100" cy="100" r="96"/>
       <circle class="m-ring" cx="100" cy="100" r="88"/>
@@ -322,16 +325,16 @@
         <circle class="m-glow" cx="100" cy="140" r="78" fill="url(#mGlow)"/>
         <g class="m-rays" id="mRays"></g>
         <g class="m-rise">
-          <circle cx="100" cy="132" r="22" fill="#FFB547" opacity=".55"/>
-          <use href="#vsSun" fill="url(#sunFill)" transform="translate(100 132) scale(1.95) translate(-32.13 -36.39)"/>
+          <circle cx="100" cy="132" r="22" fill="#FFF3DC" opacity=".6"/>
+          <use href="#vsSun" fill="#fff" transform="translate(100 132) scale(1.95) translate(-32.13 -36.39)"/>
         </g>
         <g transform="translate(-58 118) scale(.316)">
           <use href="#fortPath" class="m-fort"/>
           <g id="mCity"></g>
         </g>
-        <rect x="0" y="168" width="200" height="40" fill="#070D33"/>
+        <rect x="0" y="168" width="200" height="40" fill="#7A2A0C"/>
       </g>
-      <circle cx="100" cy="100" r="79" fill="none" stroke="rgba(226,191,140,.6)" stroke-width="1"/>
+      <circle cx="100" cy="100" r="79" fill="none" stroke="rgba(242,142,0,.55)" stroke-width="1"/>
     </svg>
 
     <svg class="logo" viewBox="0 0 420.4 74.6" role="img" aria-label="Vijay Sshree">
@@ -361,7 +364,7 @@
         <span class="row-text"><span class="row-label">Service</span><span class="row-value">customersupport<wbr>@vijaysshree.com</span></span>
         <span class="row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M19 19a3 3 0 0 1-3 2h-2"/></svg></span>
       </a>
-      <a class="row" href="https://www.google.com/maps/search/?api=1&amp;query=Vijaysshree%20House%20Pal%20Bye%20Pass%20Circle%20Jodhpur" target="_blank" rel="noopener">
+      <a class="row" href="https://www.google.com/maps/place/VIJAYSSHREE+TECHNOLOGIES+INDIA+LIMITED/@26.2262447,72.9596022,976m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3941895e92db7297:0x8513d0708090d926!8m2!3d26.2262447!4d72.9596022!16s%2Fg%2F11plh3mnrq" target="_blank" rel="noopener">
         <span class="row-text"><span class="row-label">Office</span><span class="row-value">Pal Bye Pass, Jodhpur</span></span>
         <span class="row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
       </a>
@@ -375,11 +378,11 @@
       <h2 id="catTitle">Catalogues</h2>
       <div class="carousel" id="carousel">
         <a class="slide" href="catalogs/vijay-sshree-air-coolers.pdf" target="_blank" rel="noopener" data-brand="Vijay Sshree" data-title="Air Coolers" aria-label="Air Coolers catalogue"><span class="slide-frame"><img src="assets/covers/air-cooler.webp" alt="" width="640" height="674" style="object-position:60% 50%"></span></a>
+        <a class="slide" href="catalogs/crafterio-storewell.pdf" target="_blank" rel="noopener" data-brand="Crafterio" data-title="Almirahs" aria-label="Almirahs catalogue"><span class="slide-frame"><img src="assets/covers/crafterio-storewell.webp" alt="" width="640" height="491" style="object-position:88% 50%"></span></a>
         <a class="slide" href="catalogs/vijay-sshree-atta-chakki.pdf" target="_blank" rel="noopener" data-brand="Vijay Sshree" data-title="Atta Chakki" aria-label="Atta Chakki catalogue"><span class="slide-frame"><img src="assets/covers/atta-chakki.webp" alt="" width="640" height="640" style="object-position:22% 50%"></span></a>
         <a class="slide" href="catalogs/thiinc-smart-tv.pdf" target="_blank" rel="noopener" data-brand="Thiinc" data-title="Smart TVs" aria-label="Smart TVs catalogue"><span class="slide-frame"><img src="assets/covers/thiinc-tv.webp" alt="" width="640" height="640" style="object-position:50% 50%"></span></a>
         <a class="slide" href="catalogs/thiinc-washing-machines.pdf" target="_blank" rel="noopener" data-brand="Thiinc" data-title="Washing Machines" aria-label="Washing Machines catalogue"><span class="slide-frame"><img src="assets/covers/thiinc-washing-machine.webp" alt="" width="640" height="876" style="object-position:50% 50%"></span></a>
         <a class="slide" href="catalogs/thiinc-mixer-grinders.pdf" target="_blank" rel="noopener" data-brand="Thiinc" data-title="Mixer Grinders" aria-label="Mixer Grinders catalogue"><span class="slide-frame"><img src="assets/covers/thiinc-mixer-grinder.webp" alt="" width="640" height="981" style="object-position:50% 40%"></span></a>
-        <a class="slide" href="catalogs/crafterio-storewell.pdf" target="_blank" rel="noopener" data-brand="Crafterio" data-title="Storewell Collection" aria-label="Storewell Collection catalogue"><span class="slide-frame"><img src="assets/covers/crafterio-storewell.webp" alt="" width="640" height="491" style="object-position:88% 50%"></span></a>
         <a class="slide" href="catalogs/crafterio-office-furniture.pdf" target="_blank" rel="noopener" data-brand="Crafterio" data-title="Office Furniture" aria-label="Office Furniture catalogue"><span class="slide-frame"><img src="assets/covers/crafterio-office.webp" alt="" width="640" height="674" style="object-position:40% 50%"></span></a>
       </div>
       <div class="caption" id="caption" aria-live="polite"><small>Vijay Sshree</small><b>Air Coolers</b></div>
@@ -407,7 +410,7 @@
 
     <div class="panel facts">
       <div><b>28</b><span>Years</span></div>
-      <div><b>300+</b><span>Dealers</span></div>
+      <div><b>600+</b><span>Channel Partners</span></div>
       <div><b>6.4L</b><span>Customers</span></div>
     </div>
 
@@ -486,7 +489,7 @@ if (CONTACT.whatsapp) {
   }
   let s = 1998;
   const rnd = () => ((s = (s * 16807) % 2147483647) / 2147483647);
-  const city = $('mCity'), blues = ['#1B2B78', '#22358D', '#2A40A0', '#3451B8'];
+  const city = $('mCity'), blues = ['#8E3410', '#A3400F', '#B44A12', '#C4561A'];
   for (let x = 120; x < 900;) {
     const w = 14 + rnd() * 26, h = 10 + rnd() * 26;
     const r = document.createElementNS(NS, 'rect');
@@ -496,7 +499,7 @@ if (CONTACT.whatsapp) {
     if (rnd() < .35) {
       const win = document.createElementNS(NS, 'rect');
       win.setAttribute('x', x + w * .35); win.setAttribute('y', 160 - h * .6); win.setAttribute('width', 3.5); win.setAttribute('height', 5);
-      win.setAttribute('fill', '#FFB547');
+      win.setAttribute('fill', '#FFE3B0');
       city.appendChild(win);
     }
     x += w;
@@ -509,7 +512,7 @@ if (CONTACT.whatsapp) {
   const cv = $('dust'), ctx = cv.getContext('2d');
   let W, H, motes = [];
   function size() {
-    const dpr = Math.min(2, devicePixelRatio || 1);
+    const dpr = 1; // motes are soft dots; full-res would only cost the GPU on phones
     W = cv.width = innerWidth * dpr; H = cv.height = innerHeight * dpr;
     motes = Array.from({ length: Math.round(Math.min(50, innerWidth / 20)) }, () => ({
       x: Math.random() * W, y: Math.random() * H, r: (Math.random() * 1.2 + .4) * dpr,
@@ -524,7 +527,7 @@ if (CONTACT.whatsapp) {
       m.x += m.vx; m.y += m.vy;
       if (m.y < -10) { m.y = H + 10; m.x = Math.random() * W; }
       const a = .2 + .3 * Math.sin(t / 1400 + m.p);
-      ctx.fillStyle = `rgba(255, 214, 160, ${a.toFixed(3)})`;
+      ctx.fillStyle = `rgba(242, 142, 0, ${(a * .6).toFixed(3)})`;
       ctx.beginPath(); ctx.arc(m.x, m.y, m.r, 0, 6.283); ctx.fill();
     }
     requestAnimationFrame(tick);
@@ -535,11 +538,13 @@ if (CONTACT.whatsapp) {
 /* ---------- Light sweep: crosses once, then follows scroll, mouse and phone tilt ---------- */
 (function glare() {
   const g = $('glare');
-  if (calm) { g.style.setProperty('--sx', .9); return; }
+  // sx is the sweep position (1.2 = off to the right); the strip is 320% wide, so shift by 2.2/3.2 of its width
+  const place = sx => { g.style.transform = `translate3d(${(-68.75 * sx).toFixed(3)}%, 0, 0)`; };
+  if (calm) { place(.9); return; }
   let cur = 1.25, target = 1.25, extra = 0, running = false;
   const loop = () => {
     cur += (target + extra - cur) * .05;
-    g.style.setProperty('--sx', cur.toFixed(4));
+    place(cur);
     if (Math.abs(target + extra - cur) > .0005) requestAnimationFrame(loop); else running = false;
   };
   const kick = () => { if (!running) { running = true; requestAnimationFrame(loop); } };
@@ -559,6 +564,14 @@ if (CONTACT.whatsapp) {
   const car = $('carousel'), slides = [...car.querySelectorAll('.slide')];
   const cap = $('caption'), dotsWrap = $('dots');
   let active = -1, raf = 0, timer = 0, userTouched = false;
+  let centers = [], slideW = 1, half = 0;
+  const shades = slides.map(s => {
+    const sh = document.createElement('span');
+    sh.className = 'slide-shade';
+    s.firstElementChild.appendChild(sh);
+    return sh;
+  });
+  const zs = slides.map(() => null);
 
   const dots = slides.map((s, i) => {
     const b = document.createElement('button');
@@ -567,31 +580,36 @@ if (CONTACT.whatsapp) {
     dotsWrap.appendChild(b); return b;
   });
 
+  // Measure once (and on resize) so scrolling never reads layout
   function pad() {
     const p = (car.clientWidth - slides[0].offsetWidth) / 2 + 10;
     car.style.paddingLeft = car.style.paddingRight = p + 'px';
+    slideW = slides[0].offsetWidth || 1;
+    half = car.clientWidth / 2;
+    centers = slides.map(s => s.offsetLeft + s.offsetWidth / 2);
   }
-  function centerOf(i) { const s = slides[i]; return s.offsetLeft + s.offsetWidth / 2 - car.clientWidth / 2; }
+  function centerOf(i) { return centers[i] - half; }
   function go(i, smooth = !calm) { car.scrollTo({ left: centerOf(i), behavior: smooth ? 'smooth' : 'auto' }); }
 
   function render() {
     raf = 0;
-    const mid = car.scrollLeft + car.clientWidth / 2;
+    const mid = car.scrollLeft + half;
     let best = 0, bestD = Infinity;
     slides.forEach((s, i) => {
-      const c = s.offsetLeft + s.offsetWidth / 2;
-      const o = Math.max(-2, Math.min(2, (c - mid) / s.offsetWidth));
+      const c = centers[i];
+      const o = Math.max(-2, Math.min(2, (c - mid) / slideW));
       const a = Math.min(1, Math.abs(o));
-      s.style.transform = `translateZ(${-a * 120}px) rotateY(${-o * 32}deg) scale(${1 - a * .1})`;
-      s.style.zIndex = 10 - Math.round(Math.abs(o) * 4);
-      s.firstElementChild.style.filter = `brightness(${(1 - a * .45).toFixed(3)})`;
+      s.style.transform = `translate3d(0, 0, ${(-a * 120).toFixed(2)}px) rotateY(${(-o * 32).toFixed(2)}deg) scale(${(1 - a * .1).toFixed(4)})`;
+      const z = 10 - Math.round(Math.abs(o) * 4);
+      if (z !== zs[i]) { zs[i] = z; s.style.zIndex = z; }
+      shades[i].style.opacity = (a * .2).toFixed(3);
       if (Math.abs(c - mid) < bestD) { bestD = Math.abs(c - mid); best = i; }
     });
     if (best !== active) {
       active = best;
       dots.forEach((d, i) => d.setAttribute('aria-current', i === active));
       cap.innerHTML = `<small>${slides[active].dataset.brand}</small><b>${slides[active].dataset.title}</b>`;
-      cap.classList.remove('swap'); void cap.offsetWidth; cap.classList.add('swap');
+      if (!calm && cap.animate) cap.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 450, easing: 'cubic-bezier(.16, .84, .3, 1)' });
     }
   }
   const queue = () => { if (!raf) raf = requestAnimationFrame(render); };
